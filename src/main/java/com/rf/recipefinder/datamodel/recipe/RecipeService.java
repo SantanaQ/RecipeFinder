@@ -12,16 +12,10 @@ import java.util.List;
 public class RecipeService {
 
     private final RecipeRepository recipeRepository;
-    private final CategoryService categoryService;
-    private final IngredientService ingredientService;
 
     @Autowired
-    public RecipeService(RecipeRepository recipeRepository,
-                         CategoryService categoryService,
-                         IngredientService ingredientService) {
+    public RecipeService(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
-        this.categoryService = categoryService;
-        this.ingredientService = ingredientService;
     }
 
     public List<Recipe> findAll() {
@@ -29,8 +23,21 @@ public class RecipeService {
     }
 
     public Recipe findById(Long id) {
-        return recipeRepository.findById(id).orElse(null);
+        return recipeRepository.findById(id).orElseThrow();
     }
+
+    public List<Recipe> findByCategories(List<String> categories) {
+        return recipeRepository.findAllByCategories(categories);
+    }
+
+    public List<Recipe> findByIngredients(List<String> ingredients) {
+        return recipeRepository.findAllByIngredients(ingredients);
+    }
+
+    public List<Recipe> findByTitle(String title) {
+        return recipeRepository.findByTitleContainingIgnoreCase(title);
+    }
+
 
 
 

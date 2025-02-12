@@ -1,9 +1,6 @@
 package com.rf.recipefinder.datamodel.recipe;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -11,7 +8,7 @@ import java.util.List;
 @RequestMapping("/recipe")
 public class RecipeController {
 
-    private RecipeService recipeService;
+    private final RecipeService recipeService;
 
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
@@ -22,7 +19,25 @@ public class RecipeController {
         return recipeService.findAll();
     }
 
+    @GetMapping("/{id}")
+    public Recipe getRecipeById(@PathVariable Long id) {
+        return recipeService.findById(id);
+    }
 
+    @GetMapping("/category")
+    public List<Recipe> getRecipesByCategories(@RequestParam List<String> categories) {
+        return recipeService.findByCategories(categories);
+    }
+
+    @GetMapping("/ingredient")
+    public List<Recipe> getRecipesByIngredient(@RequestParam List<String> ingredients) {
+        return recipeService.findByIngredients(ingredients);
+    }
+
+    @GetMapping("/search")
+    public List<Recipe> searchRecipes(@RequestParam String title) {
+        return recipeService.findByTitle(title);
+    }
 
 
 }
