@@ -4,6 +4,7 @@ package com.rf.recipefinder.datamodel.recipe;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.rf.recipefinder.datamodel.recipecategory.RecipeCategory;
 import com.rf.recipefinder.datamodel.recipeingredient.RecipeIngredient;
+import com.rf.recipefinder.datamodel.recipetag.RecipeTag;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,7 +16,6 @@ public class Recipe {
     @Id
     @SequenceGenerator(name = "recipeSequence", sequenceName = "recipeSequence", allocationSize = 1)
     @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "recipeSequence")
-    //@Column(name = "recipe_id", insertable = false, updatable = false, nullable = false)
     private Long id;
 
     private String title;
@@ -23,6 +23,10 @@ public class Recipe {
     @Column(length = 4000)
     private String instructions;
     private String author;
+    private int prepTime;
+    private int cookingTime;
+    private int servings;
+    private String image;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -32,9 +36,16 @@ public class Recipe {
     @JsonManagedReference
     private List<RecipeCategory> categories;
 
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<RecipeTag> tags;
+
     public Recipe() {}
 
-    public Recipe(Long id, String title, String description, String instructions, String author, List<RecipeIngredient> ingredients, List<RecipeCategory> categories) {
+    public Recipe(Long id, String title, String description,
+                  String instructions, String author, List<RecipeIngredient> ingredients,
+                  List<RecipeCategory> categories, List<RecipeTag> tags, int prepTime,
+                  int cookingTime, int servings, String image) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -42,22 +53,40 @@ public class Recipe {
         this.author = author;
         this.ingredients = ingredients;
         this.categories = categories;
+        this.tags = tags;
+        this.prepTime = prepTime;
+        this.cookingTime = cookingTime;
+        this.servings = servings;
+        this.image = image;
     }
 
-    public Recipe(String title, String description, String instructions, String author, List<RecipeIngredient> ingredients, List<RecipeCategory> categories) {
+    public Recipe(String title, String description,
+                  String instructions, String author, List<RecipeIngredient> ingredients,
+                  List<RecipeCategory> categories, List<RecipeTag> tags, int prepTime,
+                  int cookingTime, int servings, String image) {
         this.title = title;
         this.description = description;
         this.instructions = instructions;
         this.author = author;
         this.ingredients = ingredients;
         this.categories = categories;
+        this.tags = tags;
+        this.prepTime = prepTime;
+        this.cookingTime = cookingTime;
+        this.servings = servings;
+        this.image = image;
     }
 
-    public Recipe(String title, String description, String instructions, String author) {
+    public Recipe(String title, String description, String instructions, String author,
+                  int prepTime, int cookingTime, int servings, String image) {
         this.title = title;
         this.description = description;
         this.instructions = instructions;
         this.author = author;
+        this.prepTime = prepTime;
+        this.cookingTime = cookingTime;
+        this.servings = servings;
+        this.image = image;
     }
 
     public Long getId() {
@@ -100,11 +129,59 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    public List<RecipeCategory> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<RecipeCategory> categories) {
+        this.categories = categories;
+    }
+
+    public List<RecipeTag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<RecipeTag> tags) {
+        this.tags = tags;
+    }
+
     public String getAuthor() {
         return author;
     }
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public int getPrepTime() {
+        return prepTime;
+    }
+
+    public void setPrepTime(int prepTime) {
+        this.prepTime = prepTime;
+    }
+
+    public int getCookingTime() {
+        return cookingTime;
+    }
+
+    public void setCookingTime(int cookingTime) {
+        this.cookingTime = cookingTime;
+    }
+
+    public int getServings() {
+        return servings;
+    }
+
+    public void setServings(int servings) {
+        this.servings = servings;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

@@ -13,8 +13,11 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     @Query("SELECT DISTINCT r FROM Recipe r JOIN r.categories rc WHERE rc.category.name IN :categories")
     List<Recipe> findAllByCategories(List<String> categories);
 
-    @Query("SELECT DISTINCT r FROM Recipe r JOIN r.ingredients rc WHERE rc.ingredient.name IN :ingredients")
+    @Query("SELECT DISTINCT r FROM Recipe r JOIN r.ingredients ri WHERE ri.ingredient.name IN :ingredients")
     List<Recipe> findAllByIngredients(List<String> ingredients);
+
+    @Query("SELECT DISTINCT r FROM Recipe r JOIN r.tags rt WHERE rt.tag.name IN :tags")
+    List<Recipe> findAllByTags(List<String> tags);
 
     List<Recipe> findByTitleContainingIgnoreCase(String name);
 

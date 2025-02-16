@@ -30,8 +30,13 @@ public class RecipeController {
     }
 
     @GetMapping("/ingredient")
-    public List<Recipe> getRecipesByIngredient(@RequestParam List<String> ingredients) {
+    public List<Recipe> getRecipesByIngredients(@RequestParam List<String> ingredients) {
         return recipeService.findByIngredients(ingredients);
+    }
+
+    @GetMapping("/tag")
+    public List<Recipe> getRecipesByTags(@RequestParam List<String> tags) {
+        return recipeService.findByTags(tags);
     }
 
     @GetMapping("/search")

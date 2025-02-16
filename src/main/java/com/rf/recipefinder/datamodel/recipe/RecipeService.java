@@ -34,6 +34,10 @@ public class RecipeService {
         return recipeRepository.findAllByIngredients(ingredients);
     }
 
+    public List<Recipe> findByTags(List<String> tags) {
+        return recipeRepository.findAllByTags(tags);
+    }
+
     public List<Recipe> findByTitle(String title) {
         return recipeRepository.findByTitleContainingIgnoreCase(title);
     }
