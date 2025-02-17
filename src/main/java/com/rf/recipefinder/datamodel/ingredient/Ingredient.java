@@ -11,6 +11,7 @@ public class Ingredient {
     @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "ingredientSequence")
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private String name;
 
     public Ingredient() {}

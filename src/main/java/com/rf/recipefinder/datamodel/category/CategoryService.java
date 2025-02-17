@@ -1,11 +1,10 @@
 package com.rf.recipefinder.datamodel.category;
 
-import com.rf.recipefinder.util.Capitalizer;
+import com.rf.recipefinder.util.StringFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -18,9 +17,10 @@ public class CategoryService {
     }
 
     public Category saveCategory(Category category) {
-        category.setName(Capitalizer.capitalizeFirstLetter(category.getName()));
-        Optional<Category> categoryOptional = categoryRepository.findByName(category.getName());
-        return categoryOptional.orElseGet(() -> categoryRepository.save(category));
+        String cleanedName = StringFormatter.trimAndcapitalizeFirstLetter(category.getName());
+        category.setName(cleanedName);
+        return categoryRepository.findByName(cleanedName)
+                .orElseGet(() -> categoryRepository.save(category));
     }
 
     public List<Category> findAll() {

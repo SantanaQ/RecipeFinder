@@ -1,11 +1,11 @@
 package com.rf.recipefinder.datamodel.tag;
 
-import com.rf.recipefinder.util.Capitalizer;
+import com.rf.recipefinder.util.StringFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class TagService {
@@ -18,9 +18,9 @@ public class TagService {
     }
 
     public Tag saveTag(Tag tag) {
-        tag.setName(Capitalizer.capitalizeFirstLetter(tag.getName()));
-        Optional<Tag> optionalTag = tagRepository.findByName(tag.getName());
-        return optionalTag.orElseGet(() -> tagRepository.save(tag));
+        tag.setName(StringFormatter.trimAndcapitalizeFirstLetter(tag.getName()));
+        return tagRepository.findByName(tag.getName())
+                .orElseGet(() -> tagRepository.save(tag));
     }
 
     public List<Tag> findAll() {

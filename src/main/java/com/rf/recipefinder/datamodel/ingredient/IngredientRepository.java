@@ -9,7 +9,6 @@ import java.util.Optional;
 @Repository
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
 
-    @Query("SELECT i from Ingredient i WHERE i.name = ?1")
     Optional<Ingredient> findByName(String name);
 
 }

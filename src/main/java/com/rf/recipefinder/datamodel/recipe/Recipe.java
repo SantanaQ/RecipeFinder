@@ -28,15 +28,15 @@ public class Recipe {
     private int servings;
     private String image;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.DETACH, orphanRemoval = true)
     @JsonManagedReference
     private List<RecipeIngredient> ingredients;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.DETACH, orphanRemoval = true)
     @JsonManagedReference
     private List<RecipeCategory> categories;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.DETACH, orphanRemoval = true)
     @JsonManagedReference
     private List<RecipeTag> tags;
 

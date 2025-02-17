@@ -11,6 +11,7 @@ public class Tag {
     @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "tagSequence")
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private String name;
 
     public Tag(){}

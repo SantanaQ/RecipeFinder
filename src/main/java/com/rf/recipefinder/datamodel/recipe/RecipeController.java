@@ -44,5 +44,10 @@ public class RecipeController {
         return recipeService.findByTitle(title);
     }
 
+    @PostMapping
+    public Recipe addRecipe(@RequestBody Recipe recipe) {
+        return recipeService.saveRecipe(recipe);
+    }
+
 
 }
