@@ -17,7 +17,7 @@ public class IngredientService {
     }
 
     public Ingredient saveIngredient(Ingredient ingredient) {
-        ingredient.setName(StringFormatter.trimAndcapitalizeFirstLetter(ingredient.getName()));
+        ingredient.setName(StringFormatter.trimAndCapitalizeFirstLetter(ingredient.getName()));
         return ingredientRepository.findByName(ingredient.getName())
                 .orElseGet(() -> ingredientRepository.save(ingredient));
     }

@@ -18,7 +18,7 @@ public class TagService {
     }
 
     public Tag saveTag(Tag tag) {
-        tag.setName(StringFormatter.trimAndcapitalizeFirstLetter(tag.getName()));
+        tag.setName(StringFormatter.trimAndCapitalizeFirstLetter(tag.getName()));
         return tagRepository.findByName(tag.getName())
                 .orElseGet(() -> tagRepository.save(tag));
     }

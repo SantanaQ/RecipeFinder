@@ -17,7 +17,7 @@ public class CategoryService {
     }
 
     public Category saveCategory(Category category) {
-        String cleanedName = StringFormatter.trimAndcapitalizeFirstLetter(category.getName());
+        String cleanedName = StringFormatter.trimAndCapitalizeFirstLetter(category.getName());
         category.setName(cleanedName);
         return categoryRepository.findByName(cleanedName)
                 .orElseGet(() -> categoryRepository.save(category));

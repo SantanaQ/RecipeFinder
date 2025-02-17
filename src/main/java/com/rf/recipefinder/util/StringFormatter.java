@@ -2,7 +2,7 @@ package com.rf.recipefinder.util;
 
 public class StringFormatter {
 
-    public static String trimAndcapitalizeFirstLetter(String str) {
+    public static String trimAndCapitalizeFirstLetter(String str) {
         str = str.trim().toLowerCase();
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
