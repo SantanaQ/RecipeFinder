@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 @Table
 public class Unit {
 
+    //TODO: add to recipe data model
+
     @Id
     @SequenceGenerator(name = "unitSequence", sequenceName = "unitSequence", allocationSize = 1)
     @GeneratedValue( strategy = GenerationType.SEQUENCE, generator = "unitSequence")
