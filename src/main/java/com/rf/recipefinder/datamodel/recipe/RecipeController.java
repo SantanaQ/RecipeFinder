@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/recipe")
+@RequestMapping("/api/recipes")
 public class RecipeController {
 
     private final RecipeService recipeService;
@@ -15,8 +15,13 @@ public class RecipeController {
     }
 
     @GetMapping
-    public List<Recipe> getAllRecipes() {
+   public List<Recipe> getAllRecipes() {
         return recipeService.findAll();
+    }
+
+    @GetMapping("/titles")
+    public List<String> getRecipeTitles() {
+        return recipeService.findTitles();
     }
 
     @GetMapping("/{id}")

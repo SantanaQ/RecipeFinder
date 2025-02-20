@@ -1,0 +1,35 @@
+<th:block th:fragment="recipeList">
+    <div class="content-container list-container">
+        <div th:each="recipe : ${recipes}" class="card-container">
+            <div>
+                <a th:attr="hx-get=@{/recipes/{id}(id=${recipe.id})}"
+                   hx-push-url="true"
+                   hx-target="body"
+                   hx-swap="outerHTML"
+                   class="fill-div">
+                    <div class="image-container">
+                        <img th:src="@{/images/recipes/{image}(image=${recipe.image})}" alt="logo"/>
+                    </div>
+                    <div class="title">
+                        <h2 th:text="${recipe.title}"></h2>
+                    </div>
+                    <div>
+                        <p th:text="${recipe.description}"></p>
+                    </div>
+
+                </a>
+            </div>
+
+            <div>
+                <div class="author-container">
+                    <p th:text="|Author: ${recipe.author}|"></p>
+                </div>
+                <div class="category-container">
+                    <div class="category-card" th:each="category : ${recipe.categories}">
+                        <p th:text="${category.category.name}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>

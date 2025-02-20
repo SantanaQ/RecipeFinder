@@ -2,8 +2,9 @@ package com.rf.recipefinder.datamodel.recipe;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+
 
 import java.util.List;
 
@@ -20,5 +21,11 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     List<Recipe> findAllByTags(List<String> tags);
 
     List<Recipe> findByTitleContainingIgnoreCase(String name);
+
+    @Query("SELECT DISTINCT r.title FROM Recipe r")
+    List<String> findAllTitles();
+
+    //@Query("SELECT new com.rf.recipefinder.datamodel.recipe.RecipeDTO(r.title, r.description, r.author, r.image) FROM Recipe r")
+    //List<RecipeDTO> findAllSummaries();
 
 }

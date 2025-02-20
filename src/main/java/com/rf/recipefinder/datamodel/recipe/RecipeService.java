@@ -13,10 +13,14 @@ import com.rf.recipefinder.datamodel.recipetag.RecipeTag;
 import com.rf.recipefinder.datamodel.recipetag.RecipeTagService;
 import com.rf.recipefinder.datamodel.tag.Tag;
 import com.rf.recipefinder.datamodel.tag.TagService;
+import com.rf.recipefinder.files.FileHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -50,6 +54,25 @@ public class RecipeService {
 
     public List<Recipe> findAll() {
         return recipeRepository.findAll();
+    }
+
+    public List<String> findTitles() {
+        return recipeRepository.findAllTitles();
+    }
+
+    public List<RecipeDTO> findAllSummaries() {
+        List<Recipe> recipes = findAll();
+        List<RecipeDTO> recipesSummaries = new ArrayList<>();
+        for (Recipe recipe : recipes) {
+            recipesSummaries.add(new RecipeDTO(
+                    recipe.getId(),
+                    recipe.getTitle(),
+                    recipe.getDescription(),
+                    recipe.getAuthor(),
+                    recipe.getCategories(),
+                    recipe.getImage()));
+        }
+        return recipesSummaries;
     }
 
     public Recipe findById(Long id) {
@@ -97,6 +120,16 @@ public class RecipeService {
             recipeTagService.saveRecipeTag(recipeTag);
         }
         return savedRecipe;
+    }
+
+
+    public String getRecipeImagePath(Long id) {
+        Recipe recipe = recipeRepository.findById(id).orElseThrow();
+        try {
+            return FileHandler.getImagePath(recipe.getImage());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

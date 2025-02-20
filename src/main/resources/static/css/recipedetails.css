@@ -1,0 +1,38 @@
+table {
+    width: 55%;
+}
+
+td {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.recipe-text-container{
+    width: 85%;
+    margin: auto;
+}
+
+.servings {
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+.servings input[type=number] {
+    width: 40px;
+    appearance: textfield;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #afafaf;
+    border-radius: 5px;
+}
+
+
+.servings input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.details-container {
+    margin-bottom: 200px;
+    padding-bottom: 200px;
+}
