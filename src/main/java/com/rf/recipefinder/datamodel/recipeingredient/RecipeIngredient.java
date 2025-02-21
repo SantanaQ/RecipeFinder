@@ -26,12 +26,15 @@ public class RecipeIngredient {
     private double amount;
     private String unit;
 
+    private double baseAmount;
+
     public RecipeIngredient() {}
 
     public RecipeIngredient(Recipe recipe, Ingredient ingredient, double amount, String unit) {
         this.recipe = recipe;
         this.ingredient = ingredient;
         this.amount = amount;
+        this.baseAmount = amount;
         this.unit = unit;
         this.id = new RecipeIngredientId(recipe.getId(), ingredient.getId());
     }
@@ -74,5 +77,9 @@ public class RecipeIngredient {
 
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    public double getBaseAmount() {
+        return baseAmount;
     }
 }

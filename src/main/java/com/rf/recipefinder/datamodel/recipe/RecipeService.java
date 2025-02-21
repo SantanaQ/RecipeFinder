@@ -13,7 +13,6 @@ import com.rf.recipefinder.datamodel.recipetag.RecipeTag;
 import com.rf.recipefinder.datamodel.recipetag.RecipeTagService;
 import com.rf.recipefinder.datamodel.tag.Tag;
 import com.rf.recipefinder.datamodel.tag.TagService;
-import com.rf.recipefinder.files.FileHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -121,22 +120,5 @@ public class RecipeService {
         }
         return savedRecipe;
     }
-
-
-    public String getRecipeImagePath(Long id) {
-        Recipe recipe = recipeRepository.findById(id).orElseThrow();
-        try {
-            return FileHandler.getImagePath(recipe.getImage());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
-
-
-
-
-
 
 }

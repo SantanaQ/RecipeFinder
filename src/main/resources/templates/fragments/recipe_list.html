@@ -2,13 +2,13 @@
     <div class="content-container list-container">
         <div th:each="recipe : ${recipes}" class="card-container">
             <div>
-                <a th:attr="hx-get=@{/recipes/{id}(id=${recipe.id})}"
+                <a th:attr="hx-get=@{/recipes/details/{id}(id=${recipe.id})}"
                    hx-push-url="true"
                    hx-target="body"
                    hx-swap="outerHTML"
-                   class="fill-div">
+                   class="fill-div font-black">
                     <div class="image-container">
-                        <img th:src="@{/images/recipes/{image}(image=${recipe.image})}" alt="logo"/>
+                        <img th:src="@{/images/recipes/{image}(image=${recipe.image})}" alt="recipe image"/>
                     </div>
                     <div class="title">
                         <h2 th:text="${recipe.title}"></h2>
@@ -16,7 +16,6 @@
                     <div>
                         <p th:text="${recipe.description}"></p>
                     </div>
-
                 </a>
             </div>
 

@@ -1,0 +1,14 @@
+<div th:fragment="ingredientList">
+    <table id="ingredientList" >
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr th:each="ingredient : ${ingredients}">
+            <td th:text="${ingredient.amount}" class="amount"></td>
+            <td th:text="${ingredient.unit}"></td>
+            <td th:text="${ingredient.ingredient.name}"></td>
+        </tr>
+    </table>
+</div>

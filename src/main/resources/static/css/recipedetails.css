@@ -19,7 +19,6 @@ td {
 
 .servings input[type=number] {
     width: 40px;
-    appearance: textfield;
     text-align: center;
     padding: 5px;
     border: 1px solid #afafaf;

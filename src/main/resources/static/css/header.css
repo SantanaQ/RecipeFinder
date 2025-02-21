@@ -1,0 +1,16 @@
+.header-container {
+    height: 10vh;
+    background-color: black;
+    margin-bottom: 5vh;
+}
+
+.header-content {
+    display: flex;
+    width: 90%;
+    height: 100%;
+    margin: auto;
+}
+
+.logo {
+    color: orange;
+}

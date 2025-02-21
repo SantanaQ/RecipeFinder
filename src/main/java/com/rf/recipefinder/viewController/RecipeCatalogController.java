@@ -27,23 +27,6 @@ public class RecipeCatalogController {
         return "/fragments/recipe_list";
     }
 
-    @GetMapping("/{id}")
-    public String getRecipeById(Model model, @PathVariable Long id) {
-        Recipe r = recipeService.findById(id);
-        model.addAttribute("recipe", r);
-        return "recipe_details";
-    }
 
-    @GetMapping("/image")
-    public String getRecipeImage(@RequestParam Long id) {
-        return recipeService.getRecipeImagePath(id);
-    }
-
-/*
-    @PostMapping("/calculateAmount")
-    public String calculateAmount(@RequestParam int servings, Model model) {
-        Recipe recipe = recipeService.getCurrent
-        return String.format("%.2f", calculatedAmount);
-    }*/
 
 }

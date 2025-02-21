@@ -1,0 +1,16 @@
+<th:block th:fragment="header">
+    <div class="header-container">
+        <div class="header-content">
+            <div class="logo">
+                <a class="fill-div"
+                   th:attr="hx-get=@{/}"
+                    hx-push-url="true"
+                    hx-target="body"
+                    hx-swap="outerHTML">
+                    <h1>RecipeFinder</h1>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</th:block>

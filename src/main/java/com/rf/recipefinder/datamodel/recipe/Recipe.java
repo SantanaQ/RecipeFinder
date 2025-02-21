@@ -28,6 +28,8 @@ public class Recipe {
     private int servings;
     private String image;
 
+    private int baseServings;
+
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.DETACH, orphanRemoval = true)
     @JsonManagedReference
     private List<RecipeIngredient> ingredients;
@@ -58,6 +60,7 @@ public class Recipe {
         this.cookingTime = cookingTime;
         this.servings = servings;
         this.image = image;
+        this.baseServings = servings;
     }
 
     public Recipe(String title, String description,
@@ -75,6 +78,7 @@ public class Recipe {
         this.cookingTime = cookingTime;
         this.servings = servings;
         this.image = image;
+        this.baseServings = servings;
     }
 
     public Recipe(String title, String description, String instructions, String author,
@@ -87,6 +91,7 @@ public class Recipe {
         this.cookingTime = cookingTime;
         this.servings = servings;
         this.image = image;
+        this.baseServings = servings;
     }
 
     public Long getId() {
@@ -183,5 +188,9 @@ public class Recipe {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public int getBaseServings() {
+        return baseServings;
     }
 }
