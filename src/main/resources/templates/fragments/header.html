@@ -3,14 +3,47 @@
         <div class="header-content">
             <div class="logo">
                 <a class="fill-div"
-                   th:attr="hx-get=@{/}"
+                   th:hx-get="@{/home}"
                     hx-push-url="true"
                     hx-target="body"
                     hx-swap="outerHTML">
                     <h1>RecipeFinder</h1>
                 </a>
+            </div>
+            <div class="search-container">
 
+            </div>
+            <div class="scroll-menu">
+                <button id="showMenu"
+                        th:hx-get="@{/header/menu}"
+                        hx-trigger="click"
+                        hx-target="#menuWrapper"
+                        hx-swap="outerHTML"
+                        hx-on="htmx:afterSwap: document.getElementById('contentMenu').style.display = 'block';">
+                    <ion-icon name="grid-outline"></ion-icon>
+                </button>
             </div>
         </div>
     </div>
+    <div id="menuWrapper"></div>
+
+
+    <script>
+        document.body.addEventListener("click", function(event) {
+            let menu = document.getElementById("contentMenu");
+            let button = document.getElementById("showMenu");
+
+            if (menu && !menu.contains(event.target) && event.target !== button) {
+                menu.style.display = "none";
+            }
+        });
+
+        document.getElementById("showMenu").addEventListener("click", function(event) {
+            let menu = document.getElementById("contentMenu");
+            if (menu) {
+                menu.style.display = (menu.style.display === "none" || menu.style.display === "") ? "block" : "none";
+                event.stopPropagation();
+            }
+        });
+    </script>
 </th:block>

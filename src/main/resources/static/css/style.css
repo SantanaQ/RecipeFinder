@@ -30,8 +30,6 @@ body {
 
 .content-container {
     background-color: white;
-    width: 60%;
-    margin: auto;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
@@ -70,4 +68,9 @@ a.font-black {
     margin-bottom: 5px;
     padding-bottom: 0;
     border-bottom: 1px solid lightgray;
+}
+
+.center {
+    width: 60%;
+    margin: auto;
 }

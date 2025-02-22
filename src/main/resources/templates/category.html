@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" th:href="@{/css/style.css}">
-    <title>Recipefinder </title>
+    <title th:text="${category}"></title>
 </head>
 <body>
 
@@ -10,9 +10,12 @@
 
 
 <div class="center">
-    <h1>Welcome!</h1>
+    <div style="display: flex;">
+        <h1 th:text="|Results for&nbsp|"></h1>
+        <h1 style="font-style: italic;" th:text="${category}"></h1>
+    </div>
     <div id="recipeList"
-         hx-get="/recipes"
+         th:hx-post="@{/recipes/{type}/{concrete}(type='category', concrete=${category})}"
          hx-trigger="load"
          hx-swap="outerHTML">
         <th:block th:replace="~{fragments/recipe_list :: recipeList}"></th:block>
@@ -24,4 +27,4 @@
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
-</html> 
+</html>

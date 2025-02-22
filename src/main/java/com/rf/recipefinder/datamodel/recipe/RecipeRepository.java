@@ -25,7 +25,9 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     @Query("SELECT DISTINCT r.title FROM Recipe r")
     List<String> findAllTitles();
 
-    //@Query("SELECT new com.rf.recipefinder.datamodel.recipe.RecipeDTO(r.title, r.description, r.author, r.image) FROM Recipe r")
-    //List<RecipeDTO> findAllSummaries();
+    @Query("SELECT DISTINCT r FROM Recipe r JOIN r.categories rc WHERE rc.category.name = :category")
+    List<Recipe> findAllByCategory(String category);
 
+    @Query("SELECT DISTINCT r FROM Recipe r JOIN r.tags rt WHERE rt.tag.name = :tag")
+    List<Recipe> findAllByTag(String tag);
 }

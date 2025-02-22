@@ -25,10 +25,16 @@ public class RecipeDetailsController {
 
     @GetMapping("/{id}")
     public String getRecipeById(@PathVariable Long id, Model model) {
-        currentRecipe = recipeService.findById(id);
-        model.addAttribute("recipe", currentRecipe);
-        model.addAttribute("ingredients", currentRecipe.getIngredients());
-        return "recipe_details";
+        try {
+            currentRecipe = recipeService.findById(id);
+            model.addAttribute("recipe", currentRecipe);
+            model.addAttribute("ingredients", currentRecipe.getIngredients());
+            return "recipe_details";
+        } catch (Exception e) {
+            //NEEDS Error view
+            return "index";
+        }
+
     }
 
     @PostMapping("/{id}/calculateServings")

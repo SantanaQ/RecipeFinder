@@ -126,7 +126,7 @@
     "cookingtime": 10,
     "servings": 4,
     "image": "pancakes.jpg",
-    "course": "Desserts, Breakfast",
+    "course": "Dessert, Breakfast",
     "creator": "RecipeFinder"
   },
   {
@@ -308,7 +308,7 @@
     "cookingtime": 25,
     "servings": 4,
     "image": "sweet-potato-casserole.jpg",
-    "course": "Desserts, Sweets",
+    "course": "Dessert, Sweets",
     "creator": "RecipeFinder"
   },
   {
@@ -438,7 +438,7 @@
     "cookingtime": 5,
     "servings": 5,
     "image": "pumpkin-spice-pancakes.jpg",
-    "course": "Desserts, Breakfast",
+    "course": "Dessert, Breakfast",
     "creator": "RecipeFinder"
   },
   {
@@ -451,7 +451,7 @@
     "cookingtime": 0,
     "servings": 1,
     "image": "chocolate-avocado-mousse.jpg",
-    "course": "Desserts",
+    "course": "Dessert",
     "creator": "RecipeFinder"
   },
   {

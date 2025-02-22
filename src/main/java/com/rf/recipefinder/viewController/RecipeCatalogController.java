@@ -1,13 +1,15 @@
 package com.rf.recipefinder.viewController;
 
-import com.rf.recipefinder.datamodel.recipe.Recipe;
+import com.rf.recipefinder.datamodel.category.CategoryService;
 import com.rf.recipefinder.datamodel.recipe.RecipeDTO;
 import com.rf.recipefinder.datamodel.recipe.RecipeService;
 
+import com.rf.recipefinder.datamodel.tag.TagService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -15,9 +17,15 @@ import java.util.List;
 public class RecipeCatalogController {
 
     private final RecipeService recipeService;
+    private final TagService tagService;
+    private final CategoryService categoryService;
 
-    public RecipeCatalogController(RecipeService recipeService) {
+    public RecipeCatalogController(RecipeService recipeService,
+                                   TagService tagService,
+                                   CategoryService categoryService) {
         this.recipeService = recipeService;
+        this.tagService = tagService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping
@@ -25,6 +33,31 @@ public class RecipeCatalogController {
         List<RecipeDTO> summaries = recipeService.findAllSummaries();
         model.addAttribute("recipes", summaries);
         return "/fragments/recipe_list";
+    }
+
+    @PostMapping("/{type}/{concrete}")
+    public String getAllByType(@PathVariable String type, @PathVariable String concrete, Model model) {
+        System.err.println("LOLLL " + type + " " + concrete);
+        List<RecipeDTO> summaries = switch (type) {
+            case "category" -> recipeService.findSummariesByCategory(concrete);
+            case "tag" -> recipeService.findSummariesByTag(concrete);
+            default -> new ArrayList<>();
+        };
+        System.err.println(summaries.size());
+        model.addAttribute("recipes", summaries);
+        return "/fragments/recipe_list";
+    }
+
+    @GetMapping("/category/{category}")
+    public String categoryPage(@PathVariable String category, Model model) {
+        model.addAttribute("category", category);
+        return "category";
+    }
+
+    @GetMapping("/tag/{tag}")
+    public String tagPage(@PathVariable String tag, Model model) {
+        model.addAttribute("tag", tag);
+        return "tag";
     }
 
 

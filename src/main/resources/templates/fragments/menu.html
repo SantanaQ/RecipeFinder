@@ -1,0 +1,40 @@
+<div id="contentMenu"
+     th:fragment="menu"
+     hx-on="
+        htmx:afterSwap: this.style.display='block';
+        click: event.stopPropagation();
+     ">
+    <div class="menu-content">
+        <div class="menu-content-box">
+            <h3>Categories</h3>
+            <div class="boxes">
+                <div class="box" th:each="category : ${categories}">
+                    <a th:hx-get="@{/recipes/category/{cat}(cat=${category.name})}"
+                        hx-push-url="true"
+                        hx-target="body"
+                        hx-swap="outerHTML"
+                        class="fill-div">
+                        <p th:text="${category.name}"></p>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="menu-content-box">
+            <h3>Tags</h3>
+            <div class="boxes">
+                <div class="box" th:each="tag : ${tags}">
+                    <a th:hx-get="@{/recipes/tag/{t}(t=${tag.name})}"
+                        hx-push-url="true"
+                        hx-target="body"
+                        hx-swap="outerHTML"
+                        class="fill-div">
+                        <p th:text="${tag.name}"></p>
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
