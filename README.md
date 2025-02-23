@@ -55,5 +55,4 @@ Before starting the application, you need to set up a PostgreSQL database:
 
 ## Usage
 - Access the application in your browser: `http://localhost:8080`
-- Browse and save recipes
-- Add and manage your own recipes
+- Browse recipes
