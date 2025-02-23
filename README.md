@@ -1,6 +1,6 @@
 # RecipeFinder
 
-RecipeFinder is a web-based application for providing cooking recipes. Users can browse, save, and manage recipes. The application leverages modern technologies for an efficient and interactive user experience.
+RecipeFinder is a web-based application for providing cooking recipes. Users can request recipes based on categories, tags or keywords. The application leverages modern technologies for an efficient and interactive user experience.
 
 ## Technologies
 - **Java** – Main programming language for backend logic
@@ -47,6 +47,11 @@ Before starting the application, you need to set up a PostgreSQL database:
    mvn clean install
    mvn spring-boot:run
    ```
+
+## Planned Features
+- Ability to add new recipes.
+- User authentication and profile management.
+- Save and manage favorite recipes.
 
 ## Usage
 - Access the application in your browser: `http://localhost:8080`
