@@ -23,7 +23,7 @@ RecipeFinder is a web-based application for providing cooking recipes. Users can
    cd RecipeFinder
    ```
 2. **Configure the database**
-   Configure the `.env` file in the project's root directory and add the database credentials:
+   Create a .env file in the project's root directory and add the database credentials:
    ```env
    DB_URL=jdbc:postgresql://localhost:5432/recipefinder
    DB_USERNAME=your-username
