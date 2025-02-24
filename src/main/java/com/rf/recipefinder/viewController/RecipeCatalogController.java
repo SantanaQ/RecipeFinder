@@ -37,13 +37,11 @@ public class RecipeCatalogController {
 
     @PostMapping("/{type}/{concrete}")
     public String getAllByType(@PathVariable String type, @PathVariable String concrete, Model model) {
-        System.err.println("LOLLL " + type + " " + concrete);
         List<RecipeDTO> summaries = switch (type) {
             case "category" -> recipeService.findSummariesByCategory(concrete);
             case "tag" -> recipeService.findSummariesByTag(concrete);
             default -> new ArrayList<>();
         };
-        System.err.println(summaries.size());
         model.addAttribute("recipes", summaries);
         return "/fragments/recipe_list";
     }
