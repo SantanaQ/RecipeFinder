@@ -1,0 +1,13 @@
+<th:block th:fragment="searchResults">
+    <div th:each="recipe : ${recipes}">
+        <div class="results-element">
+            <a th:text="${recipe.title}"
+               th:attr="hx-get=@{/recipes/details/{id}(id=${recipe.id})}"
+               hx-push-url="true"
+               hx-target="body"
+               hx-swap="outerHTML"
+               class="fill-div">
+            </a>
+        </div>
+    </div>
+</th:block>

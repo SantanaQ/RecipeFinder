@@ -11,39 +11,34 @@
                 </a>
             </div>
             <div class="search-container">
-
+                <div style="display:  flex; height: 100%">
+                    <form class="search-form">
+                        <input type="search"
+                               autocomplete="off"
+                               placeholder="Browse your favorite recipes..."
+                               name="query"
+                               th:hx-post="@{/recipes/searchResults}"
+                               hx-trigger="input changed delay:500ms, keyup[key=='Enter']"
+                               hx-target="#search-results"
+                               hx-indicator=".htmx-indicator"/>
+                        <button id="showSearch">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </button>
+                    </form>
+                </div>
             </div>
             <div class="scroll-menu">
                 <button id="showMenu"
                         th:hx-get="@{/header/menu}"
                         hx-trigger="click"
                         hx-target="#menuWrapper"
-                        hx-swap="outerHTML"
-                        hx-on="htmx:afterSwap: document.getElementById('contentMenu').style.display = 'block';">
+                        hx-swap="outerHTML">
                     <ion-icon name="grid-outline"></ion-icon>
                 </button>
             </div>
         </div>
     </div>
     <div id="menuWrapper"></div>
-
-
-    <script>
-        document.body.addEventListener("click", function(event) {
-            let menu = document.getElementById("contentMenu");
-            let button = document.getElementById("showMenu");
-
-            if (menu && !menu.contains(event.target) && event.target !== button) {
-                menu.style.display = "none";
-            }
-        });
-
-        document.getElementById("showMenu").addEventListener("click", function(event) {
-            let menu = document.getElementById("contentMenu");
-            if (menu) {
-                menu.style.display = (menu.style.display === "none" || menu.style.display === "") ? "block" : "none";
-                event.stopPropagation();
-            }
-        });
-    </script>
+    <div id="search-results"></div>
+    <script src="/js/component_visibility.js"></script>
 </th:block>

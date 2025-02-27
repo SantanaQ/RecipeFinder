@@ -21,7 +21,7 @@ public class RecipeController {
 
     @GetMapping("/titles")
     public List<String> getRecipeTitles() {
-        return recipeService.findTitles();
+        return recipeService.findSummariesByTitle();
     }
 
     @GetMapping("/{id}")

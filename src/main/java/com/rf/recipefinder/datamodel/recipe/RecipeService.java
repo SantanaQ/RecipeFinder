@@ -17,8 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +53,7 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
-    public List<String> findTitles() {
+    public List<String> findSummariesByTitle() {
         return recipeRepository.findAllTitles();
     }
 
@@ -103,6 +101,14 @@ public class RecipeService {
 
     public List<Recipe> findByTitle(String title) {
         return recipeRepository.findByTitleContainingIgnoreCase(title);
+    }
+
+    public List<RecipeDTO> findSummariesByTitle(String query) {
+        if(query == null || query.isEmpty()) {
+            return List.of();
+        }
+        List<Recipe> recipes = recipeRepository.findByTitleContainingIgnoreCase(query);
+        return createDTOs(recipes);
     }
 
     @Transactional

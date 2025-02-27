@@ -12,12 +12,8 @@
     border: 1px solid white;
     color: black;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    transition: border 0.5s ease-in-out;
 }
 
-.card-container:hover {
-    border: 1px solid #ff9191;
-}
 
 .category-container {
     display: flex;

@@ -35,3 +35,7 @@ td {
     margin-bottom: 200px;
     padding-bottom: 200px;
 }
+
+.instructions p{
+    color: #454545;
+}
