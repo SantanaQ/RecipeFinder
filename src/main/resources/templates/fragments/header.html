@@ -14,14 +14,18 @@
                 <div style="display:  flex; height: 100%">
                     <form class="search-form">
                         <input type="search"
+                               id="searchInput"
                                autocomplete="off"
                                placeholder="Browse your favorite recipes..."
                                name="query"
                                th:hx-post="@{/recipes/searchResults}"
                                hx-trigger="input changed delay:500ms, keyup[key=='Enter']"
-                               hx-target="#search-results"
-                               hx-indicator=".htmx-indicator"/>
-                        <button id="showSearch">
+                               hx-target="#search-results"/>
+                        <button id="showSearch"
+                                hx-get="/recipes/search"
+                                hx-include="#searchInput"
+                                hx-target="body"
+                                hx-push-url="true">
                             <ion-icon name="search-outline"></ion-icon>
                         </button>
                     </form>
@@ -32,13 +36,14 @@
                         th:hx-get="@{/header/menu}"
                         hx-trigger="click"
                         hx-target="#menuWrapper"
-                        hx-swap="outerHTML">
+                        hx-swap="innerHTML">
                     <ion-icon name="grid-outline"></ion-icon>
                 </button>
             </div>
         </div>
     </div>
-    <div id="menuWrapper"></div>
+    <div id="menuWrapper">
+    </div>
     <div id="search-results"></div>
     <script src="/js/component_visibility.js"></script>
 </th:block>

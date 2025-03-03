@@ -59,10 +59,18 @@ public class RecipeCatalogController {
     }
 
     @PostMapping("/searchResults")
-    public String search(@RequestParam String query, Model model) {
+    public String searchResults(@RequestParam String query, Model model) {
         List<RecipeDTO> recipes = recipeService.findSummariesByTitle(query);
         model.addAttribute("recipes", recipes);
         return "fragments/search_results";
+    }
+
+    @GetMapping("/search")
+    public String search(@RequestParam String query, Model model) {
+        List<RecipeDTO> recipes = recipeService.findSummariesByTitle(query);
+        model.addAttribute("recipes", recipes);
+        model.addAttribute("query", query);
+        return "search";
     }
 
 }

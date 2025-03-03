@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <title th:text="|Results for ${query}|"></title>
+</head>
+<body>
+
+<th:block th:replace="~{fragments/header}"></th:block>
+
+
+<div class="center">
+    <div style="display: flex; vertical-align: center">
+        <h1 th:text="|Results for&nbsp|"></h1>
+        <h1 style="font-style: italic; overflow: hidden; text-overflow: ellipsis; max-width: 60%" th:text="${query}"></h1>
+    </div>
+    <div id="recipeList">
+        <th:block th:replace="${!recipes.isEmpty()} ? ~{fragments/recipe_list :: recipeList} : _">
+            <p>Hmmm...</p>
+            <p style="font-style: italic; overflow: hidden; text-overflow: ellipsis;" th:text="|We could not find any matches for ${query}|"></p>
+        </th:block>
+    </div>
+</div>
+
+<script src="/js/htmx.min.js"></script>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

@@ -14,4 +14,3 @@ document.getElementById("showMenu").addEventListener("click", function(event) {
         event.stopPropagation();
     }
 });
-
